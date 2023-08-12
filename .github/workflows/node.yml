@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./reactform/
+        working-directory: ../reactform/
     strategy:
       matrix:
         node-version: [18.x]

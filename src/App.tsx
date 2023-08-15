@@ -16,6 +16,10 @@ function App() {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
+  const handleClick = () => {
+    console.log(values);
+  };
   const frminputs = [
     {
       id: 1,
@@ -64,10 +68,18 @@ function App() {
               label={input.label}
               type={input.formInputType}
               key={input.name}
+              name={input.name}
               placeholder={input.placeHolder}
               required={true}
+              onChange={onChange}
             />
           ))}
+          <input
+            type="button"
+            className="btn btn-primary"
+            value="Save"
+            onClick={handleClick}
+          ></input>
         </div>
       </form>
     </>

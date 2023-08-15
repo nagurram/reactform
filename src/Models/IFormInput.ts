@@ -1,7 +1,9 @@
 export default interface IFormInput {
-    FormInputType: "text" | "date" | "password" | "email";
-    Name: string;
-    Value: string;
-    PlaceHolder: string
-    Lable?: string;
+  id: Number;
+  formInputType: "text" | "date" | "password" | "email";
+  name: string;
+  value: string;
+  placeHolder: string;
+  lable?: string;
+  
 }

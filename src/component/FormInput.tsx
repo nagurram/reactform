@@ -3,14 +3,11 @@ import "./FormInput.css";
 import { ChangeEvent } from "react";
 import IFormInput from "../Models/IFormInput";
 
-function FormInput({
-  Name,
-  Lable,
-  PlaceHolder,
-  Value,
-  FormInputType,
-}: IFormInput) {
-  const [inputvalue, setState] = useState(Value);
+function FormInput(
+  { id, name, lable, placeHolder, value, formInputType }: IFormInput,
+  onChange: ChangeEvent<HTMLInputElement>
+) {
+  const [inputvalue, setState] = useState(value);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setState(e.target.value);
     console.log(inputvalue);
@@ -20,13 +17,13 @@ function FormInput({
     <>
       <div className="row mt-2">
         <div className="col-md-2 mb-2 d-flex justify-content-end align-items-end pe-1">
-          <label>{Lable}:</label>
+          <label>{lable}:</label>
         </div>
         <div className="col-md-10">
           <input
-            type={FormInputType}
+            type={formInputType}
             value={inputvalue}
-            placeholder={PlaceHolder}
+            placeholder={placeHolder}
             className="form-control textfield"
             onChange={handleChange}
           />

@@ -27,7 +27,7 @@ function App() {
       placeHolder: "User Name",
       formInputType: "text",
       name: "txtUserName",
-      onchange: onChange,
+      required: true,
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ function App() {
       placeHolder: "Password",
       formInputType: "password",
       name: "txtPassword",
-      onchange: onChange,
+      required: true,
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ function App() {
       placeHolder: "DD/MM/YYYY",
       formInputType: "date",
       name: "txtdob",
-      onchange: onChange,
+      required: false,
     },
     {
       id: 4,
@@ -54,14 +54,14 @@ function App() {
       placeHolder: "E-Mail",
       formInputType: "email",
       name: "txtemail",
-      onchange: onChange,
+      required: false,
     },
   ];
 
   return (
     <>
       <form>
-        <div className="row">
+        <div className="container">
           {frminputs.map((input) => (
             <FormInput
               label={input.label}
@@ -69,7 +69,7 @@ function App() {
               key={input.name}
               name={input.name}
               placeholder={input.placeHolder}
-              required={true}
+              required={input.required}
               onChange={onChange}
             />
           ))}

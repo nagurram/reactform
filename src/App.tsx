@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 import FormInput from "./component/FormInput";
 import "bootstrap/dist/css/bootstrap.css";
-import IFormInput from "./Models/IFormInput";
 
 function App() {
   const formDefaultvalues = {

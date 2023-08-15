@@ -13,56 +13,56 @@ function App() {
   };
 
   const [values, setValues] = useState(formDefaultvalues);
-
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   const frminputs = [
     {
       id: 1,
-      lable: "User Name",
+      label: "User Name",
       value: "",
       placeHolder: "User Name",
       formInputType: "text",
       name: "txtUserName",
+      onchange: onChange,
     },
     {
       id: 2,
-      lable: "Password",
+      label: "Password",
       value: "",
       placeHolder: "Password",
       formInputType: "password",
       name: "txtPassword",
+      onchange: onChange,
     },
     {
       id: 3,
-      lable: "Date Of birth",
+      label: "Date Of birth",
       value: "",
       placeHolder: "DD/MM/YYYY",
       formInputType: "date",
       name: "txtdob",
+      onchange: onChange,
     },
     {
       id: 4,
-      lable: "E-Mail",
+      label: "E-Mail",
       value: "",
       placeHolder: "E-Mail",
       formInputType: "email",
       name: "txtemail",
+      onchange: onChange,
     },
   ];
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
+
   return (
     <>
       <div className="row">
         {frminputs.map((input) => (
           <FormInput
-            key={input.id}
-            {...input}
-            value={
-              (Object.keys(values) as (keyof typeof values)[]).find((key) => {
-                return values[key] === input.name;
-              })!}
-            onChange={onChange}
+            label={input.label}
+            type={input.formInputType}
+            key={input.name}
           />
         ))}
       </div>

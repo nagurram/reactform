@@ -1,3 +1,5 @@
+import { ChangeEvent, ChangeEventHandler } from "react";
+
 export default interface IFormInput {
   id: Number;
   formInputType: "text" | "date" | "password" | "email";
@@ -5,5 +7,5 @@ export default interface IFormInput {
   value: string;
   placeHolder: string;
   lable?: string;
-  
+  onchange: ChangeEventHandler<HTMLInputElement>;
 }

@@ -3,30 +3,20 @@ import "./FormInput.css";
 import { ChangeEvent } from "react";
 import IFormInput from "../Models/IFormInput";
 
-function FormInput(
-  { id, name, lable, placeHolder, value, formInputType }: IFormInput,
-  onChange: ChangeEvent<HTMLInputElement>
-) {
-  const [inputvalue, setState] = useState(value);
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setState(e.target.value);
-    console.log(inputvalue);
-  };
+type Props = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> & { label: string };
 
+function FormInput(props: Props) {
   return (
     <>
       <div className="row mt-2">
         <div className="col-md-2 mb-2 d-flex justify-content-end align-items-end pe-1">
-          <label>{lable}:</label>
+          <label>{props.label}:</label>
         </div>
         <div className="col-md-10">
-          <input
-            type={formInputType}
-            value={inputvalue}
-            placeholder={placeHolder}
-            className="form-control textfield"
-            onChange={handleChange}
-          />
+          <input {...props} className="form-control textfield" />
         </div>
       </div>
     </>

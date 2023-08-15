@@ -14,6 +14,7 @@ function FormInput(props: Props) {
       <div className="row mt-2">
         <div className="col-md-2 mb-2 d-flex justify-content-end align-items-end pe-1">
           <label>{props.label}:</label>
+          <span className="formInputRequired">{props.required && "*"}</span>
         </div>
         <div className="col-md-10">
           <input {...props} className="form-control textfield" />

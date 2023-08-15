@@ -1,3 +1,7 @@
 .textfield {
   max-width: 300px;
 }
+.formInputRequired   {
+  content: "*";
+  color: red;
+}

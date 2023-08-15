@@ -57,15 +57,19 @@ function App() {
 
   return (
     <>
-      <div className="row">
-        {frminputs.map((input) => (
-          <FormInput
-            label={input.label}
-            type={input.formInputType}
-            key={input.name}
-          />
-        ))}
-      </div>
+      <form>
+        <div className="row">
+          {frminputs.map((input) => (
+            <FormInput
+              label={input.label}
+              type={input.formInputType}
+              key={input.name}
+              placeholder={input.placeHolder}
+              required={true}
+            />
+          ))}
+        </div>
+      </form>
     </>
   );
 }

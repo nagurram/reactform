@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FormInput.css";
-import { ChangeEvent } from "react";
-import IFormInput from "../Models/IFormInput";
 
 type Props = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

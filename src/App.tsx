@@ -14,7 +14,7 @@ function App() {
   };
 
   const [values, setValues] = useState(formDefaultvalues);
-  const { isOpen, dialogContent, openDialog, closeDialog, confirmDialog } =
+  const { isOpen,result, dialogContent, openDialog, closeDialog, confirmDialog } =
     useDialog();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -25,7 +25,7 @@ function App() {
   };
 
   const opendialog = () => {
-    openDialog("Dialog Title", "This is the dialog message.");
+    openDialog("Dialog Title", "This is the dialog message.",confirmDialog);
   };
 
   const frminputs = [

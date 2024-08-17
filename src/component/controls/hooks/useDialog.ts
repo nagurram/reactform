@@ -7,14 +7,16 @@ interface DialogContent {
 
 const useDialog = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [result, setResult] = useState<string>('No');
   const [dialogContent, setDialogContent] = useState<DialogContent>({
     title: "",
     message: "",
   });
 
-  const openDialog = (title: string, message: string) => {
+  const openDialog = (title: string, message: string,onconfirm:()=>void) => {
     setDialogContent({ title, message });
     setIsOpen(true);
+    
   };
 
   const closeDialog = () => {
@@ -22,11 +24,13 @@ const useDialog = () => {
   };
 
   const confirmDialog = () => {
-    setIsOpen(false);
+    setIsOpen(false);    
+    setResult('Yes');
   };
 
   return {
     isOpen,
+    result,
     dialogContent,
     openDialog,
     closeDialog,

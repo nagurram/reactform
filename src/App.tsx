@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 import FormInput from "./component/FormInput";
 import "bootstrap/dist/css/bootstrap.css";
+import ModelDialog from "./component/controls/modeldialog";
+import useDialog from "./component/controls/hooks/useDialog";
 
 function App() {
   const formDefaultvalues = {
@@ -12,6 +14,8 @@ function App() {
   };
 
   const [values, setValues] = useState(formDefaultvalues);
+  const { isOpen, dialogContent, openDialog, closeDialog, confirmDialog } =
+    useDialog();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -19,6 +23,11 @@ function App() {
   const handleClick = () => {
     console.log(values);
   };
+
+  const opendialog = () => {
+    openDialog("Dialog Title", "This is the dialog message.");
+  };
+
   const frminputs = [
     {
       id: 1,
@@ -79,6 +88,16 @@ function App() {
             value="Save"
             onClick={handleClick}
           ></input>
+          &nbsp;&nbsp;&nbsp;
+          <button className="btn  btn-primary" onClick={opendialog}>
+            Open Dialog
+          </button>
+          <ModelDialog
+            isOpen={isOpen}
+            dialogContent={dialogContent}
+            closeDialog={closeDialog}
+            confirmDialog={confirmDialog}
+          />
         </div>
       </form>
     </>

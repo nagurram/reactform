@@ -1,28 +1,36 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
 
 interface DialogProps {
+  id: string;
   isOpen: boolean;
-  dialogContent: {
-    title: string;
-    message: string;
-  };
-  closeDialog: () => void;
-  confirmDialog:()=> void;
+
+  title: string;
+  message: string;
+
+  oncancel: () => void;
+  onconfirm: () => void;
 }
 
-const ModelDialog: React.FC<DialogProps> = ({ isOpen, dialogContent, closeDialog,confirmDialog }) => {
+const ModelDialog: React.FC<DialogProps> = ({
+  id,
+  isOpen,
+  title,
+  message,
+  oncancel,
+  onconfirm,
+}) => {
   return (
-    <Modal show={isOpen} onHide={closeDialog}>
+    <Modal show={isOpen} onHide={oncancel} key={id}>
       <Modal.Header closeButton>
-        <Modal.Title>{dialogContent.title}</Modal.Title>
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{dialogContent.message}</Modal.Body>
+      <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={closeDialog}>
+        <Button variant="secondary" onClick={oncancel}>
           cancel
         </Button>
-        <Button variant="secondary" onClick={confirmDialog}>
+        <Button variant="secondary" onClick={onconfirm}>
           Confirm
         </Button>
       </Modal.Footer>

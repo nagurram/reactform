@@ -14,7 +14,7 @@ function App() {
   };
 
   const [values, setValues] = useState(formDefaultvalues);
-  const { isOpen, dialogContent, openDialog, closeDialog, confirmDialog } =
+  const { isOpen, showDialog, title, message, oncancel, onconfirm } =
     useDialog();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -25,7 +25,20 @@ function App() {
   };
 
   const opendialog = () => {
-    openDialog("Dialog Title", "This is the dialog message.");
+    showDialog({
+      title: "Dialog Title",
+      message: "This is the dialog message.",
+      isOpen: true,
+      onconfirm: () => {
+        console.log("confirm clicked");
+      },
+      oncancel: () => {
+        console.log("cancel clicked");
+      },
+      showDialog: () => {
+        console.log("showDialog clicked");
+      },
+    });
   };
 
   const frminputs = [
@@ -94,9 +107,11 @@ function App() {
           </button>
           <ModelDialog
             isOpen={isOpen}
-            dialogContent={dialogContent}
-            closeDialog={closeDialog}
-            confirmDialog={confirmDialog}
+            oncancel={oncancel}
+            onconfirm={onconfirm}
+            id="maindialog"
+            title={title}
+            message={message}
           />
         </div>
       </form>

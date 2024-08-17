@@ -1,36 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface DialogContent {
+  isOpen: boolean;
   title: string;
   message: string;
+  showDialog: () => void;
+  onconfirm: (...args: any[]) => void;
+  oncancel: () => void;
 }
 
-const useDialog = () => {
+interface DialogResult {
+  isOpen: boolean;
+  title: string;
+  message: string;
+  showDialog: (options: DialogContent) => void;
+  onconfirm: (...args: any[]) => void;
+  oncancel: () => void;
+}
+
+const useDialog = (): DialogResult => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [dialogContent, setDialogContent] = useState<DialogContent>({
-    title: "",
-    message: "",
-  });
+  const [message, setmessage] = useState<string>("");
+  const [title, settitle] = useState<string>("");
+  const [onconfirm, setonconfirm] = useState<() => void>(() => () => {});
 
-  const openDialog = (title: string, message: string) => {
-    setDialogContent({ title, message });
+  const [oncancel, setoncancel] = useState<() => void>(() => () => {});
+
+  const showDialog = useCallback((options: DialogContent) => {
+    settitle(options.title);
+    setmessage(options.message);
+    setonconfirm(() => options.onconfirm);
+    setoncancel(() => options.oncancel);
     setIsOpen(true);
-  };
-
-  const closeDialog = () => {
-    setIsOpen(false);
-  };
-
-  const confirmDialog = () => {
-    setIsOpen(false);
-  };
+  }, []);
 
   return {
     isOpen,
-    dialogContent,
-    openDialog,
-    closeDialog,
-    confirmDialog,
+    showDialog,
+    title,
+    message,
+    onconfirm: () => {
+      onconfirm();
+      setIsOpen(false);
+    },
+    oncancel: () => {
+      oncancel();
+      setIsOpen(false);
+    },
   };
 };
 

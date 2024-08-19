@@ -14,7 +14,7 @@ function App() {
   };
 
   const [values, setValues] = useState(formDefaultvalues);
-  const { isOpen,result, showDialog, title, message, oncancel, onconfirm } =
+  const { isOpen, showDialog, title, message, oncancel, onconfirm } =
     useDialog();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
